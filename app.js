@@ -12,20 +12,23 @@ const PORT = process.env.PORT;
 app.use(express.json());
 app.use(cors());
 
+// Database connection
+db(); 
+
 //routes
 readdirSync("./routes").map((route) => {
   console.log("Loading route:", route);
   app.use("/api/v1", require("./routes/" + route));
 });
 
-const server = () => {
-  db();
-  app.listen(PORT, () => {
-    console.log("listening to port:", PORT);
-  });
-};
+// const server = () => {
+//   db();
+//   app.listen(PORT, () => {
+//     console.log("listening to port:", PORT);
+//   });
+// };
 
-server();
+// server();
 
 module.exports = app; // Export your app
 
